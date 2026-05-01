@@ -11,20 +11,6 @@ import aiohttp
 import json
 import os
 from dotenv import load_dotenv
-# Keep the bot alive on Render Web Service
-from flask import Flask
-from threading import Thread
-
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "Bot is running"
-
-def run():
-    app.run(host='0.0.0.0', port=10000)
-
-Thread(target=run).start()
 
 # ============================================================
 #  🔐 LOAD SECRETS FROM .env
