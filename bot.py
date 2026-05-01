@@ -3321,6 +3321,20 @@ async def afk_cmd(ctx, *, reason: str = "AFK"):
                           color=discord.Color.light_grey())
     await ctx.send(embed=embed)
 
+
+@bot.command(name="testyt")
+async def test_yt(ctx, *, query: str):
+    try:
+        import yt_dlp
+        ydl_opts = {'quiet': True, 'extract_flat': True}
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(f"ytsearch:{query}", download=False)
+            if 'entries' in info:
+                info = info['entries'][0]
+            await ctx.send(f"✅ Found: {info.get('title', 'Unknown')}")
+    except Exception as e:
+        await ctx.send(f"❌ Error: {e}")
+
 # ============================================================
 #  UTILITY COMMANDS
 # ============================================================
